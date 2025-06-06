@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button, Typography } from 'antd';
+import {Button, Divider, Typography} from 'antd';
 import TaskTable from './TaskTable';
 import './style.scss';
 import type {Task} from "../../types/models.ts";
@@ -24,7 +24,7 @@ const TaskAssociate: React.FC<TaskAssociateProps> = ({
     };
 
     return (
-        <div className="step2-container">
+        <div className="container">
             <Title level={4} className="section-title">
                 Associate Task
             </Title>
@@ -35,6 +35,8 @@ const TaskAssociate: React.FC<TaskAssociateProps> = ({
             />
 
             <div className="action-buttons">
+                <Button onClick={onBack}>Cancel</Button>
+                <Divider type="vertical" className="tall-divider" />
                 <Button onClick={onBack}>Back</Button>
                 <Button
                     type="primary"
