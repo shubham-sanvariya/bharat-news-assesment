@@ -3,15 +3,16 @@ import { Button, Typography } from 'antd';
 import ProductTable from './ProductTable';
 import ConfigCards from './ConfigCards';
 import './style.scss'
+import type {Product} from "../../types/models.ts";
 
 const { Title } = Typography;
 
 interface ProductSelectProps {
-    onNext: (product: any, config: string) => void;
+    onNext: (product: Product, config: string) => void;
 }
 
 const ProductSelect: React.FC<ProductSelectProps> = ({ onNext }) => {
-    const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [selectedConfig, setSelectedConfig] = useState<string>('');
 
     const handleNext = () => {
