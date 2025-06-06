@@ -22,7 +22,7 @@ const ProductSelect: React.FC<ProductSelectProps> = ({ onNext }) => {
     };
 
     return (
-        <div className="step1-container">
+        <div className="container">
             <Title level={4} className="section-title">
                 Select Products
             </Title>

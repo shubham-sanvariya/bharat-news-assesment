@@ -28,7 +28,7 @@ const VendorSelect: React.FC<VendorSelectProps> = ({
     };
 
     return (
-        <div className="step3-container">
+        <div className="container">
             <Title level={4} className="section-title">
                 Select Vendor
             </Title>
