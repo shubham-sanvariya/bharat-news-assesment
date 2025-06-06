@@ -81,7 +81,7 @@ const ConfigCards: React.FC<ConfigCardsProps> = ({
             </Card>
 
             <CustomConfigModal
-                visible={isModalVisible}
+                open={isModalVisible}
                 onOk={handleOk}
                 onCancel={handleCancel}
             />

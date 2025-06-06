@@ -3,13 +3,13 @@ import { Modal, Checkbox } from 'antd';
 import './style.scss';
 
 interface CustomConfigModalProps {
-    visible: boolean;
+    open: boolean;
     onOk: (configType: string) => void;
     onCancel: () => void;
 }
 
 const CustomConfigModal: React.FC<CustomConfigModalProps> = ({
-                                                                 visible,
+                                                                 open,
                                                                  onOk,
                                                                  onCancel,
                                                              }) => {
@@ -39,7 +39,7 @@ const CustomConfigModal: React.FC<CustomConfigModalProps> = ({
     return (
         <Modal
             title="Select configurations you want to share"
-            visible={visible}
+            open={open}
             onOk={handleOk}
             onCancel={onCancel}
             width={600}

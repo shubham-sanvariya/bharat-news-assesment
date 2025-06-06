@@ -2,19 +2,20 @@ import React, {useState} from 'react';
 import { Button, Typography } from 'antd';
 import TaskTable from './TaskTable';
 import './style.scss';
+import type {Task} from "../../types/models.ts";
 
 const { Title } = Typography;
 
 interface TaskAssociateProps {
     onBack: () => void;
-    onNext: (task: any) => void;
+    onNext: (task: Task) => void;
 }
 
 const TaskAssociate: React.FC<TaskAssociateProps> = ({
                                                                    onBack,
                                                                    onNext
                                                                }) => {
-    const [selectedTask, setSelectedTask] = useState<any>(null);
+    const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
     const handleNext = () => {
         if (selectedTask) {
