@@ -1,0 +1,33 @@
+.share-workflow-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .card-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .workflow-steps {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+
+  .steps-content {
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  .action-buttons {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.section-title {
+  margin-bottom: 16px !important;
+  color: #333;
+}
