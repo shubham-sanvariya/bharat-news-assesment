@@ -41,6 +41,9 @@ const CustomConfigModal: React.FC<CustomConfigModalProps> = ({
             title="Select configurations you want to share"
             open={open}
             onOk={handleOk}
+            okButtonProps={{
+                disabled: selectedFields.length === 0
+            }}
             onCancel={onCancel}
             width={600}
             className="custom-config-modal"
