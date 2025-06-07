@@ -1,7 +1,7 @@
 import React from 'react';
 import type {Product} from "../../types/models.ts";
 import SelectableTable from "../table/SelectableTable.tsx";
-import {productsColumns, productsData} from "../../utils/mockData.ts";
+import {productsColumns} from "../../utils/mockData.ts";
 
 interface ProductTableProps {
     filteredData: Product[] | null;

@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Typography, Input, Button} from 'antd';
 import VendorTable from './VendorTable';
 import './style.scss';
 import type {Vendor} from "../../types/models.ts";
-import {vendorData} from "../../utils/vendorMockData.ts";
+import {vendorData} from "../../utils/vendorMockData.tsx";
 import BtnsComponent from "../button/BtnsComponent.tsx";
 
 const { Title } = Typography;
@@ -29,6 +29,16 @@ const VendorSelect: React.FC<VendorSelectProps> = ({
             onFinish();
         }
     };
+
+    const filteredData = useMemo(() => searchText.length > 0 ? vendorData.filter(vendor =>
+        vendor.vendorName.toLowerCase().includes(searchText.toLowerCase()) ||
+        vendor.primaryEmail.toLowerCase().includes(searchText.toLowerCase())
+    ) : vendorData,[searchText]);
+
+    useEffect(() => {
+        console.log(searchText)
+        console.log(filteredData);
+    }, [filteredData, searchText]);
 
     return (
         <div className="container">
@@ -61,7 +71,7 @@ const VendorSelect: React.FC<VendorSelectProps> = ({
                 </div>
             </div>
                 <VendorTable
-                    searchText={searchText}
+                    filteredData={filteredData}
                     selectedVendors={selectedVendors}
                     setSelectedVendors={setSelectedVendors}
                 />
