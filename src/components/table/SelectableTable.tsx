@@ -1,5 +1,5 @@
 import {Table} from "antd";
-import React, {useEffect, useMemo} from "react";
+import React, {useMemo} from "react";
 import type {ColumnsType} from "antd/es/table";
 
 interface BaseRecord {
@@ -10,7 +10,7 @@ interface SelectableTableProps<T extends BaseRecord> {
     columns: ColumnsType<T>;
     data: T[];
     selectedData: T | T[] | null;
-    setSelectedData: (data: T | T[]) => void;
+    setSelectedData: (data: any) => void;
     searchText?: string;
     className: string;
 }
@@ -24,9 +24,6 @@ const SelectableTable = <T extends BaseRecord>({
                                                    className
                                                }: SelectableTableProps<T>) => {
 
-    useEffect(() => {
-        console.log(selectedData)
-    }, [selectedData]);
 
     const isSelectedDataArray = useMemo(() => {
         return Array.isArray(selectedData);
@@ -53,8 +50,6 @@ const SelectableTable = <T extends BaseRecord>({
     const handleRowClick = (record : T) => {
         if (isSelectedDataArray){
 
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
             setSelectedData((prev : T[]) => {
                 const currentSelection : T[] = Array.isArray(prev) ? prev : [];
                 const isSelected = currentSelection.some(item => item.key === record.key);
@@ -75,15 +70,11 @@ const SelectableTable = <T extends BaseRecord>({
             dataSource={data}
             rowSelection={{
                 type: Array.isArray(selectedData) ? "checkbox" : "radio",
-                // onSelect: (record) => {
-                //     setSelectedData(record);
-                // },
                 ...rowSelection
             }}
             onRow={(record) => ({
                 onClick: () => handleRowClick(record)
             })}
-            // rowKey={rowKey}
             pagination={false}
             className={`selectable-table ${className}`}
             rowClassName={() => 'clickable-row'}

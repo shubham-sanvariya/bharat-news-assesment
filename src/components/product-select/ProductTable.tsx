@@ -4,8 +4,8 @@ import SelectableTable from "../table/SelectableTable.tsx";
 import {productsColumns} from "../../utils/mockData.ts";
 
 interface ProductTableProps {
-    filteredData: Product[] | null;
-    selectedProduct: Product[] | null;
+    filteredData: Product[];
+    selectedProduct: Product[];
     setSelectedProduct: (product: Product[]) => void;
 }
 
