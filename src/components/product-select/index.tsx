@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Typography } from 'antd';
+import { Typography } from 'antd';
 import ProductTable from './ProductTable';
 import ConfigCards from './ConfigCards';
 import './style.scss'
 import type {Product} from "../../types/models.ts";
+import BtnsComponent from "../button/BtnsComponent.tsx";
 
 const { Title } = Typography;
 
@@ -41,16 +42,7 @@ const ProductSelect: React.FC<ProductSelectProps> = ({ onNext }) => {
                 setSelectedConfig={setSelectedConfig}
             />
 
-            <div className="action-buttons">
-                <Button>Cancel</Button>
-                <Button
-                    type="primary"
-                    onClick={handleNext}
-                    disabled={!selectedProduct || !selectedConfig}
-                >
-                    Next
-                </Button>
-            </div>
+            <BtnsComponent handleNext={handleNext} disabled={!selectedProduct || !selectedConfig}/>
         </div>
     );
 };

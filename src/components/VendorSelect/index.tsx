@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { Button, Typography, Input } from 'antd';
+import { Typography, Input } from 'antd';
 import VendorTable from './VendorTable';
 import './style.scss';
 import type {Vendor} from "../../types/models.ts";
 import {vendorData} from "../../utils/vendorMockData.ts";
+import BtnsComponent from "../button/BtnsComponent.tsx";
 
 const { Title } = Typography;
 const { Search } = Input;
@@ -54,16 +55,8 @@ const VendorSelect: React.FC<VendorSelectProps> = ({
                 setSelectedVendors={setSelectedVendors}
             />
 
-            <div className="action-buttons">
-                <Button onClick={onBack}>Back</Button>
-                <Button
-                    type="primary"
-                    onClick={handleFinish}
-                    disabled={selectedVendors.length === 0}
-                >
-                    Share
-                </Button>
-            </div>
+            <BtnsComponent onBack={onBack} handleNext={handleFinish} disabled={selectedVendors.length === 0}/>
+
         </div>
     );
 };

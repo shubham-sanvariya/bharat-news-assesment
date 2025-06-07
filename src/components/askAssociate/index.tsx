@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {Button, Divider, Typography} from 'antd';
+import { Typography} from 'antd';
 import TaskTable from './TaskTable';
 import './style.scss';
 import type {Task} from "../../types/models.ts";
+import BtnsComponent from "../button/BtnsComponent.tsx";
 
 const { Title } = Typography;
 
@@ -34,18 +35,7 @@ const TaskAssociate: React.FC<TaskAssociateProps> = ({
                 setSelectedTask={setSelectedTask}
             />
 
-            <div className="action-buttons">
-                <Button onClick={onBack}>Cancel</Button>
-                <Divider type="vertical" className="tall-divider" />
-                <Button onClick={onBack}>Back</Button>
-                <Button
-                    type="primary"
-                    onClick={handleNext}
-                    disabled={!selectedTask}
-                >
-                    Next
-                </Button>
-            </div>
+            <BtnsComponent onBack={onBack} handleNext={handleNext} disabled={!selectedTask}/>
         </div>
     );
 };
