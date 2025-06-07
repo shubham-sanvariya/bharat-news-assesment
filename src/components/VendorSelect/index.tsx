@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { Button, Typography, Input } from 'antd';
 import VendorTable from './VendorTable';
 import './style.scss';
+import type {Vendor} from "../../types/models.ts";
+import {vendorData} from "../../utils/vendorMockData.ts";
 
 const { Title } = Typography;
 const { Search } = Input;
@@ -9,8 +11,8 @@ const { Search } = Input;
 interface VendorSelectProps {
     onBack: () => void;
     onFinish: () => void;
-    selectedVendors: any[];
-    setSelectedVendors: (vendors: any[]) => void;
+    selectedVendors: Vendor[];
+    setSelectedVendors: (vendors: Vendor[]) => void;
 }
 
 const VendorSelect: React.FC<VendorSelectProps> = ({
@@ -30,7 +32,7 @@ const VendorSelect: React.FC<VendorSelectProps> = ({
     return (
         <div className="container">
             <Title level={4} className="section-title">
-                Select Vendor
+                Select Vendors
             </Title>
 
             <Search
@@ -43,7 +45,7 @@ const VendorSelect: React.FC<VendorSelectProps> = ({
             />
 
             <div className="selected-count">
-                {selectedVendors.length} of 1 Vendors selected
+                {selectedVendors.length} of {vendorData.length} Vendors selected
             </div>
 
             <VendorTable
