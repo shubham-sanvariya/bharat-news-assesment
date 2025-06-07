@@ -8,11 +8,11 @@ import type {Product} from "../../types/models.ts";
 const { Title } = Typography;
 
 interface ProductSelectProps {
-    onNext: (product: Product, config: string) => void;
+    onNext: (product: Product[], config: string) => void;
 }
 
 const ProductSelect: React.FC<ProductSelectProps> = ({ onNext }) => {
-    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<Product[]>([]);
     const [selectedConfig, setSelectedConfig] = useState<string>('');
 
     const handleNext = () => {
