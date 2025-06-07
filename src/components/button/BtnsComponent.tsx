@@ -2,13 +2,13 @@ import React from 'react'
 import {Button, Divider} from "antd";
 
 interface ButtonProps {
-    onBack?: () => void;
     disabled: boolean;
     handleNext: () => void;
+    onBack?: () => void;
+    btnTitle?: string;
 }
 
-const BtnsComponent : React.FC<ButtonProps> = ({onBack,disabled, handleNext}) => {
-
+const BtnsComponent : React.FC<ButtonProps> = ({onBack,disabled, handleNext,btnTitle}) => {
 
     return (
         <div className="action-buttons">
@@ -21,7 +21,7 @@ const BtnsComponent : React.FC<ButtonProps> = ({onBack,disabled, handleNext}) =>
                 onClick={handleNext}
                 disabled={disabled}
             >
-                Next
+                {btnTitle ? btnTitle : "Next"}
             </Button>
         </div>
     )

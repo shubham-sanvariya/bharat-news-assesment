@@ -1,6 +1,19 @@
 .container {
-  .vendor-search {
-    margin-bottom: 16px;
+
+    .vendor-search {
+      margin-bottom: 16px;
+      width: 50%;
+    }
+  .operation-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    .table-actions {
+      margin-bottom: 16px;
+      display: flex;
+      gap: 8px;
+    }
   }
 
   .selected-count {
@@ -10,11 +23,6 @@
   }
 
   .vendor-table-container {
-    .table-actions {
-      margin-bottom: 16px;
-      display: flex;
-      gap: 8px;
-    }
 
     .vendor-table {
       .ant-table-thead > tr > th {
