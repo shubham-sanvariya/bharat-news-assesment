@@ -62,13 +62,21 @@ const ShareWorkflow: React.FC = () => {
 
     return (
         <div className="share-workflow-container">
-            <Card className={'card-section'} >
-                <Steps current={currentStep} className="workflow-steps">
-                    {steps.map((item) => (
-                        <Step key={item.title} title={item.title} className="workflow-steps"/>
+            <Card className="workflow-card">
+                <Steps current={currentStep} direction="vertical" className="vertical-steps">
+                    {steps.map((item, index) => (
+
+                        <Step
+                            key={item.title}
+                            title={item.title}
+                            description={index <= currentStep ? (
+                                <div className="step-content-container">
+                                    {index === currentStep && item.content}
+                                </div>
+                            ) : null}
+                        />
                     ))}
                 </Steps>
-                <div className="steps-content">{steps[currentStep].content}</div>
             </Card>
         </div>
     );

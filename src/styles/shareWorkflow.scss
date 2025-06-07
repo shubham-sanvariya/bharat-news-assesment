@@ -3,25 +3,44 @@
   max-width: 1200px;
   margin: 0 auto;
 
-
-  .workflow-steps {
-    //margin-bottom: 24px;
-  }
-
-  .steps-content {
-    padding: 24px;
-    background: #fff;
+  .workflow-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-  }
 
-  .action-buttons {
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-  }
-}
+    .vertical-steps {
+      padding: 24px;
 
-.section-title {
-  margin-bottom: 16px !important;
-  color: #333;
+      .ant-steps-item {
+        &-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+          padding-bottom: 8px;
+        }
+
+        &-description {
+          padding-left: 32px;
+          margin-top: 8px;
+          margin-bottom: 24px;
+        }
+      }
+
+      .ant-steps-item-process,
+      .ant-steps-item-wait,
+      .ant-steps-item-finish {
+        .ant-steps-item-icon {
+          background: #fff;
+          border-color: #1890ff;
+        }
+      }
+
+      .step-content-container {
+        background: #f9f9f9;
+        padding: 16px;
+        border-radius: 4px;
+        margin-top: 8px;
+        border-left: 3px solid #1890ff;
+      }
+    }
+  }
 }
