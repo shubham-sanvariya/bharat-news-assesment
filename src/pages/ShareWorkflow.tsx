@@ -4,15 +4,16 @@ import '../styles/shareWorkflow.scss';
 import ProductSelect from "../components/product-select";
 import TaskAssociate from "../components/askAssociate";
 import VendorSelect from "../components/VendorSelect";
+import type {Product, Task, Vendor} from "../types/models.ts";
 
 const { Step } = Steps;
 
 const ShareWorkflow: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(0);
-    const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [selectedProduct, setSelectedProduct] = useState<Product[]>([]);
     const [selectedConfig, setSelectedConfig] = useState<string>('');
-    const [selectedTask, setSelectedTask] = useState<any>(null);
-    const [selectedVendors, setSelectedVendors] = useState<any[]>([]);
+    const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+    const [selectedVendors, setSelectedVendors] = useState<Vendor[]>([]);
 
     const steps = [
         {
