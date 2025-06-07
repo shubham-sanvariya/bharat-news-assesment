@@ -25,6 +25,7 @@ export const vendorColumns = [
         title: 'Status',
         dataIndex: 'status',
         key: 'status',
+        render: (text: string) => <a href={`https://${text}`} target="_blank" rel="noopener noreferrer">{text}</a>
     },
 ];
 
