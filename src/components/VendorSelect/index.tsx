@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {Typography, Input, Button} from 'antd';
 import VendorTable from './VendorTable';
 import './style.scss';
@@ -34,11 +34,6 @@ const VendorSelect: React.FC<VendorSelectProps> = ({
         vendor.vendorName.toLowerCase().includes(searchText.toLowerCase()) ||
         vendor.primaryEmail.toLowerCase().includes(searchText.toLowerCase())
     ) : vendorData,[searchText]);
-
-    useEffect(() => {
-        console.log(searchText)
-        console.log(filteredData);
-    }, [filteredData, searchText]);
 
     return (
         <div className="container">

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import { Typography } from 'antd';
 import ProductTable from './ProductTable';
 import ConfigCards from './ConfigCards';
@@ -29,12 +29,6 @@ const ProductSelect: React.FC<ProductSelectProps> = ({ onNext }) => {
             onNext(selectedProduct, selectedConfig);
         }
     };
-
-    useEffect(() => {
-        console.log(selectedProduct);
-        console.log(searchText);
-        console.log(filteredData);
-    }, [filteredData, searchText, selectedProduct]);
 
     return (
         <div className="container">
