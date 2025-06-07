@@ -1,6 +1,8 @@
-import React from 'react';
-import { Table, Button } from 'antd';
+import React, {useMemo} from 'react';
+import { Button } from 'antd';
 import type {Vendor} from "../../types/models.ts";
+import SelectableTable from "../table/SelectableTable.tsx";
+import {vendorColumns, vendorData} from "../../utils/vendorMockData.ts";
 
 interface VendorTableProps {
     searchText: string;
@@ -13,58 +15,25 @@ const VendorTable: React.FC<VendorTableProps> = ({
                                                      selectedVendors,
                                                      setSelectedVendors
                                                  }) => {
-    const columns = [
-        {
-            title: 'Vendor Name',
-            dataIndex: 'vendorName',
-            key: 'vendorName',
-        },
-        {
-            title: 'Primary Email',
-            dataIndex: 'primaryEmail',
-            key: 'primaryEmail',
-        },
-        {
-            title: 'Contact Name',
-            dataIndex: 'contactName',
-            key: 'contactName',
-        },
-        {
-            title: 'Vendor Website',
-            dataIndex: 'vendorWebsite',
-            key: 'vendorWebsite',
-            render: (text: string) => <a href={`https://${text}`} target="_blank" rel="noopener noreferrer">{text}</a>,
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-            key: 'status',
-        },
-    ];
 
-    const data: Vendor[] = [
-        {
-            key: '1',
-            vendorName: 'Quick Solutions',
-            primaryEmail: 'sam.jackson@quicksolutions.com',
-            contactName: 'Sam Jackson',
-            vendorWebsite: 'www.quicksolutions.com',
-            status: 'Onboarded',
-        },
-        // Add more vendors as needed
-    ];
+    const vd = vendorData.map((item, index) => {
+        if (index === 3){
+            return {...item , render: (text: string) => <a href={`https://${text}`} target="_blank" rel="noopener noreferrer">{text}</a>}
+        }
+        return item;
+    })
 
-    const filteredData = data.filter(vendor =>
+    const filteredData = useMemo(() => vd.filter(vendor =>
         vendor.vendorName.toLowerCase().includes(searchText.toLowerCase()) ||
         vendor.primaryEmail.toLowerCase().includes(searchText.toLowerCase())
-    );
+    ),[searchText]);
 
-    const rowSelection = {
-        selectedRowKeys: selectedVendors.map(vendor => vendor.key),
-        onChange: (selectedRowKeys: React.Key[], selectedRows: Vendor[]) => {
-            setSelectedVendors(selectedRows);
-        },
-    };
+    // const rowSelection = {
+    //     selectedRowKeys: selectedVendors.map(vendor => vendor.key),
+    //     onChange: (_selectedRowKeys: React.Key[], selectedRows: Vendor[]) => {
+    //         setSelectedVendors(selectedRows);
+    //     },
+    // };
 
     return (
         <div className="vendor-table-container">
@@ -77,17 +46,18 @@ const VendorTable: React.FC<VendorTableProps> = ({
                 </Button>
             </div>
 
-            <Table
-                columns={columns}
-                dataSource={filteredData}
-                rowSelection={{
-                    type: 'checkbox',
-                    ...rowSelection,
-                }}
-                rowKey="key"
-                pagination={false}
-                className="vendor-table"
-            />
+            {/*<Table*/}
+            {/*    columns={columns}*/}
+            {/*    dataSource={filteredData}*/}
+            {/*    rowSelection={{*/}
+            {/*        type: 'checkbox',*/}
+            {/*        ...rowSelection,*/}
+            {/*    }}*/}
+            {/*    rowKey="key"*/}
+            {/*    pagination={false}*/}
+            {/*    className="vendor-table"*/}
+            {/*/>*/}
+            <SelectableTable columns={vendorColumns} data={filteredData} selectedData={selectedVendors} setSelectedData={setSelectedVendors} className={"vendor-table"}/>
         </div>
     );
 };
