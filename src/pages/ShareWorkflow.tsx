@@ -46,7 +46,6 @@ const ShareWorkflow: React.FC = () => {
                 <VendorSelect
                     onBack={() => setCurrentStep(1)}
                     onFinish={() => {
-                        // Handle final submission
                         console.log({
                             product: selectedProduct,
                             config: selectedConfig,
@@ -63,7 +62,7 @@ const ShareWorkflow: React.FC = () => {
 
     return (
         <div className="share-workflow-container">
-            <Card className={'card-section'}>
+            <Card className={'card-section'} >
                 <Steps current={currentStep} className="workflow-steps">
                     {steps.map((item) => (
                         <Step key={item.title} title={item.title} className="workflow-steps"/>

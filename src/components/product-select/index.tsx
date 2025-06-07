@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import { Typography } from 'antd';
 import ProductTable from './ProductTable';
 import ConfigCards from './ConfigCards';
@@ -6,6 +6,7 @@ import './style.scss'
 import type {Product} from "../../types/models.ts";
 import BtnsComponent from "../button/BtnsComponent.tsx";
 import Search from "antd/es/input/Search";
+import {productsData} from "../../utils/mockData.ts";
 
 const { Title } = Typography;
 
@@ -18,16 +19,22 @@ const ProductSelect: React.FC<ProductSelectProps> = ({ onNext }) => {
     const [selectedConfig, setSelectedConfig] = useState<string>('');
     const [searchText, setSearchText] = useState('');
 
-    const filteredData = useMemo(() => selectedProduct.filter(product =>
+    const filteredData = useMemo(() => searchText.length > 0 ? productsData.filter(product =>
         product.productName.toLowerCase().includes(searchText.toLowerCase()) ||
         product.sbomName.toLowerCase().includes(searchText.toLowerCase())
-    ),[searchText, selectedProduct]);
+    ) : productsData,[searchText]);
 
     const handleNext = () => {
         if (selectedProduct && selectedConfig) {
             onNext(selectedProduct, selectedConfig);
         }
     };
+
+    useEffect(() => {
+        console.log(selectedProduct);
+        console.log(searchText);
+        console.log(filteredData);
+    }, [filteredData, searchText, selectedProduct]);
 
     return (
         <div className="container">
@@ -45,7 +52,8 @@ const ProductSelect: React.FC<ProductSelectProps> = ({ onNext }) => {
             />
 
             <ProductTable
-                selectedProduct={filteredData}
+                filteredData={filteredData}
+                selectedProduct={selectedProduct}
                 setSelectedProduct={setSelectedProduct}
             />
 
