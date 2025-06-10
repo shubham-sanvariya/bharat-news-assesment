@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Card, Typography, Button } from 'antd';
+import React, {useState} from 'react';
+import {Card, Typography, Button} from 'antd';
 import CustomConfigModal from './CustomConfigModal';
 import './style.scss';
 
-const { Text } = Typography;
+const {Text} = Typography;
 
 interface ConfigCardsProps {
     selectedConfig: string;
@@ -15,6 +15,8 @@ const ConfigCards: React.FC<ConfigCardsProps> = ({
                                                      setSelectedConfig
                                                  }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedFields, setSelectedFields] = useState<string[]>([]);
+
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -77,14 +79,27 @@ const ConfigCards: React.FC<ConfigCardsProps> = ({
                 <div className="config-description">
                     Select from NTIA Minimum and Standard
                 </div>
-                <Button type="link">Select</Button>
+                {selectedFields.length === 0 && <Button type="link">Select</Button>}
+                {!isModalVisible && selectedFields.length >= 1 && (
+                    <div className="config-description">
+                        Includes minimum plus the following:
+                        <ul>
+                            {selectedFields.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </Card>
 
             <CustomConfigModal
                 open={isModalVisible}
                 onOk={handleOk}
                 onCancel={handleCancel}
+                disabled={selectedFields.length >= 1}
+                setSelectedFields={setSelectedFields}
             />
+
         </div>
     );
 };

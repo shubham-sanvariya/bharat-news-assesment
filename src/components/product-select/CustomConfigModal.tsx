@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Checkbox } from 'antd';
 import './style.scss';
 
@@ -6,14 +6,16 @@ interface CustomConfigModalProps {
     open: boolean;
     onOk: (configType: string) => void;
     onCancel: () => void;
+    setSelectedFields: (checkedValues) => void;
+    disabled: boolean;
 }
 
 const CustomConfigModal: React.FC<CustomConfigModalProps> = ({
                                                                  open,
                                                                  onOk,
                                                                  onCancel,
+    setSelectedFields,disabled
                                                              }) => {
-    const [selectedFields, setSelectedFields] = useState<string[]>([]);
 
     const fieldOptions = [
         { label: 'Component Name', value: 'componentName' },
@@ -37,12 +39,12 @@ const CustomConfigModal: React.FC<CustomConfigModalProps> = ({
     };
 
     return (
-        <Modal
+         <Modal
             title="Select configurations you want to share"
             open={open}
             onOk={handleOk}
             okButtonProps={{
-                disabled: selectedFields.length === 0
+                disabled: !disabled
             }}
             onCancel={onCancel}
             width={600}
@@ -51,8 +53,8 @@ const CustomConfigModal: React.FC<CustomConfigModalProps> = ({
             <div className="checkbox-group">
                 <Checkbox.Group
                     options={fieldOptions}
-                    value={selectedFields}
-                    onChange={(checkedValues) => setSelectedFields(checkedValues as string[])}
+                    // value={selectedFields}
+                    onChange={(checkedValues) => setSelectedFields(checkedValues)}
                 />
             </div>
         </Modal>
